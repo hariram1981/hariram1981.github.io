@@ -1,8 +1,8 @@
 /**************************************
-* HashMap - creates an hashmap for objects
+* Map - creates an map for objects
 * to be stored and retrieved using keys.
 * 
-* Here different hashmap objects can be 
+* Here different map objects can be 
 * created and used.
 * 
 * Functions supported are:
@@ -12,9 +12,10 @@
 *   - exists - if a key exists
 *   - listKeys - lists all keys
 ***************************************
-* Version: 0.1
+* Version: 0.2
 * Created: 30-10-2014
 * Comment: 30-10-2014 - initial version
+*        : 31-12-2014 - renaming to Map
 * Authors: Hariram S
 * 
 * Copyright (c) 2014 Hariram S
@@ -23,7 +24,7 @@
 * 
 **************************************/
 
-function HashMap() {
+function Map() {
   var _data = [];
   var _size = 0;
   this.findIndex = function(key) {
@@ -47,9 +48,9 @@ function HashMap() {
   });
 }
 
-HashMap.prototype = {
-  version: '0.1',
-  constructor: HashMap,
+Map.prototype = {
+  version: '0.2',
+  constructor: Map,
   put: function(key, value) {
     if(!key) {
       console.warn("no key provided");
