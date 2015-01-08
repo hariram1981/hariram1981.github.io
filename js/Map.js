@@ -12,10 +12,12 @@
 *   - exists - if a key exists
 *   - listKeys - lists all keys
 ***************************************
-* Version: 0.2
+* Version: 0.3
 * Created: 30-10-2014
 * Comment: 30-10-2014 - initial version
 *        : 31-12-2014 - renaming to Map
+*        : 07-01-2015 - changing check of key/value
+*                       undefined
 * Authors: Hariram S
 * 
 * Copyright (c) 2014 Hariram S
@@ -49,14 +51,14 @@ function Map() {
 }
 
 Map.prototype = {
-  version: '0.2',
+  version: '0.3',
   constructor: Map,
   put: function(key, value) {
-    if(!key) {
+    if(typeof key === 'undefined') {
       console.warn("no key provided");
       return;
     }
-    if(!value) {
+    if(typeof value === 'undefined') {
       console.warn("no value provided");
       return;
     }
