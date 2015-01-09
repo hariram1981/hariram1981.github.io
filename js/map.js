@@ -9,10 +9,11 @@
 *   - exists - if a key exists
 *   - listKeys - lists all keys
 ***************************************
-* Version: 0.3
+* Version: 0.4
 * Created: 28-10-2014
 * Comment: 30-10-2014 - slight modifications
 *        : 31-12-2014 - renaming to map
+*        : 08-01-2015 - checking typedef for variables
 * Authors: Hariram S
 *
 * Copyright (c) 2014 Hariram S
@@ -38,12 +39,12 @@ var map = (function() {
    * Put the value for the key in the map
    *********************************/
   put = function(key, value) {
-    if(!key) {
+    if(typeof key === 'undefined') {
       console.warn("no key provided");
       return;
     }
-    if(!value) {
-      console.war("no value provided");
+    if(typeof value === 'undefined') {
+      console.warn("no value provided");
       return;
     }
     
@@ -102,7 +103,7 @@ var map = (function() {
   }
 
   return {
-    version: '0.3',
+    version: '0.4',
     put: put,
     get: get,
     exists: exists,
