@@ -12,12 +12,14 @@
 *   - exists - if a key exists
 *   - listKeys - lists all keys
 ***************************************
-* Version: 0.3
+* Version: 0.4
 * Created: 30-10-2014
 * Comment: 30-10-2014 - initial version
 *        : 31-12-2014 - renaming to Map
 *        : 07-01-2015 - changing check of key/value
 *                       undefined
+*        : 13-01-2015 - adding method to find max
+*                       of values among all keys
 * Authors: Hariram S
 * 
 * Copyright (c) 2014 Hariram S
@@ -29,6 +31,7 @@
 function Map() {
   var _data = [];
   var _size = 0;
+  var _max = 0;
   this.findIndex = function(key) {
     return _data.indexOf(key);
   },
@@ -48,10 +51,18 @@ function Map() {
 	  _size = newValue;
 	}
   });
+  Object.defineProperty(this, "maxValue", {
+		get: function() {
+		  return _max;
+		},
+		set: function(newValue) {
+		  _max = newValue;
+		}
+	  });
 }
 
 Map.prototype = {
-  version: '0.3',
+  version: '0.4',
   constructor: Map,
   put: function(key, value) {
     if(typeof key === 'undefined') {
@@ -72,6 +83,23 @@ Map.prototype = {
       this.size = this.size + 2;
     } else {
       this.data[index + 1] = value;
+    }
+    
+    //Check if type is number
+    var t = 0;
+    try {
+    	t = eval(value);
+    } catch(e) {
+    	t = "";
+    }
+    if(typeof value === 'number') {
+    	if(value > this.maxValue) {
+    		this.maxValue = value;
+    	}
+    } else if(typeof t === 'number') {
+    	if(t > this.maxValue) {
+    		this.maxValue = t;
+    	}
     }
   },
   get: function(key) {
