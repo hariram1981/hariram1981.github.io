@@ -12,7 +12,7 @@
 *   - exists - if a key exists
 *   - listKeys - lists all keys
 ***************************************
-* Version: 0.4
+* Version: 0.5
 * Created: 30-10-2014
 * Comment: 30-10-2014 - initial version
 *        : 31-12-2014 - renaming to Map
@@ -20,6 +20,9 @@
 *                       undefined
 *        : 13-01-2015 - adding method to find max
 *                       of values among all keys
+*        : 13-01-2015 - fixing bug with finding keys
+*        				where even values were checked
+*        				for keys
 * Authors: Hariram S
 * 
 * Copyright (c) 2014 Hariram S
@@ -33,7 +36,14 @@ function Map() {
   var _size = 0;
   var _max = 0;
   this.findIndex = function(key) {
-    return _data.indexOf(key);
+	var index = -1;
+	for(var i=0;i<_size;i=i+2) {
+	  if(_data[i] === key) {
+		  index = i;
+		  break;
+	  }
+	}
+	return index;
   },
   Object.defineProperty(this, "data", {
 	get: function() {
