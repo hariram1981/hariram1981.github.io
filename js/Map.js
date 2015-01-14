@@ -35,6 +35,7 @@ function Map() {
   var _data = [];
   var _size = 0;
   var _max = 0;
+  var _dup = false;
   this.findIndex = function(key) {
 	var index = -1;
 	for(var i=0;i<_size;i=i+2) {
@@ -60,32 +61,51 @@ function Map() {
 	set: function(newValue) {
 	  _size = newValue;
 	}
-  });
+  }),
   Object.defineProperty(this, "maxValue", {
-		get: function() {
-		  return _max;
-		},
-		set: function(newValue) {
-		  _max = newValue;
-		}
-	  });
+	get: function() {
+	  return _max;
+	},
+	set: function(newValue) {
+	  _max = newValue;
+	}
+  }),
+  Object.defineProperty(this,"dup", {
+	get: function() {
+	  return _dup;
+	},
+	set: function(newValue) {
+	  if(newValue === true) {
+		 _dup = true;
+	  } else {
+		 _dup = false; 
+	  }
+	}
+  });
 }
 
 Map.prototype = {
-  version: '0.4',
+  version: "0.5",
   constructor: Map,
   put: function(key, value) {
-    if(typeof key === 'undefined') {
+    if(typeof key === "undefined") {
       console.warn("no key provided");
       return;
     }
-    if(typeof value === 'undefined') {
+    if(typeof value === "undefined") {
       console.warn("no value provided");
       return;
     }
     
     //Check if key exists and if so, then update the map
     var index = this.findIndex(key);
+
+    //If dup is false then check for index
+    //if dup is true then duplicate supported
+    // so don't check for index
+    if(this.dup === true) {
+      index = -1;
+    }
     
     if(index == -1) {
       this.data[this.size] = key;
@@ -102,11 +122,11 @@ Map.prototype = {
     } catch(e) {
     	t = "";
     }
-    if(typeof value === 'number') {
+    if(typeof value === "number") {
     	if(value > this.maxValue) {
     		this.maxValue = value;
     	}
-    } else if(typeof t === 'number') {
+    } else if(typeof t === "number") {
     	if(t > this.maxValue) {
     		this.maxValue = t;
     	}
