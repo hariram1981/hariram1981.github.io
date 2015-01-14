@@ -39,11 +39,11 @@ var map = (function() {
    * Put the value for the key in the map
    *********************************/
   put = function(key, value) {
-    if(typeof key === 'undefined') {
+    if(typeof key === "undefined") {
       console.warn("no key provided");
       return;
     }
-    if(typeof value === 'undefined') {
+    if(typeof value === "undefined") {
       console.warn("no value provided");
       return;
     }
@@ -103,7 +103,7 @@ var map = (function() {
   }
 
   return {
-    version: '0.4',
+    version: "0.4",
     put: put,
     get: get,
     exists: exists,
