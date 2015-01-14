@@ -26,7 +26,7 @@ function TreeSet() {
 TreeSet.prototype = new Set();
 
 TreeSet.prototype.add = function(value) {
-  if(!value) {
+  if(typeof value === "undefined") {
 	console.warn("no value provided");
 	  return;
   } 
