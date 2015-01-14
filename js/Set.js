@@ -44,10 +44,10 @@ function Set() {
 }
 
 Set.prototype = {
-  version: '0.1',
+  version: "0.1",
   constructor: Set,
   add: function(value) {
-	 if(!value) {
+	 if(typeof value === "undefined") {
        console.warn("no value provided");
 	   return;
 	 } 
