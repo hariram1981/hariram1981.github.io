@@ -9,7 +9,7 @@
 *   - exists - if a key exists
 *   - listKeys - lists all keys
 ***************************************
-* Version: 0.4
+* Version: 1.0
 * Created: 28-10-2014
 * Comment: 30-10-2014 - slight modifications
 *        : 31-12-2014 - renaming to map
